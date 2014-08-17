@@ -4,9 +4,15 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var Kaiseki = require('kaiseki');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
+
+// instantiate Parse API
+var PARSE_APP_ID = 'vryPRTUnrFkobtWYal5StGhiUMEJ7SJF2zmcSHmU';
+var PARSE_REST_API_KEY = 'P6XqvOa8Ht3XdN7pVPsbCwOVLomNnCBxUWnG3e0x';
+var kaiseki = new Kaiseki(PARSE_APP_ID, PARSE_REST_API_KEY);
 
 var app = express();
 
@@ -55,6 +61,5 @@ app.use(function(err, req, res, next) {
         error: {}
     });
 });
-
 
 module.exports = app;
