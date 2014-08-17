@@ -4,15 +4,10 @@ var favicon = require('static-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var Kaiseki = require('kaiseki');
 
 var routes = require('./routes/index');
+var api = require('./routes/api');
 var users = require('./routes/users');
-
-// instantiate Parse API
-var PARSE_APP_ID = 'vryPRTUnrFkobtWYal5StGhiUMEJ7SJF2zmcSHmU';
-var PARSE_REST_API_KEY = 'P6XqvOa8Ht3XdN7pVPsbCwOVLomNnCBxUWnG3e0x';
-var kaiseki = new Kaiseki(PARSE_APP_ID, PARSE_REST_API_KEY);
 
 var app = express();
 
@@ -29,6 +24,7 @@ app.use(require('stylus').middleware(path.join(__dirname, 'public')));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+app.use('/api', api);
 app.use('/users', users);
 
 /// catch 404 and forward to error handler
